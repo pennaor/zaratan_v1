@@ -1,0 +1,62 @@
+.select-buyers-container .swal2-html-container {
+  margin: 1em 0.6em 0.3em;
+}
+
+.select-buyers-container .swal2-close {
+  color: rgb(0 0 0 / 38%) ! important;
+  margin-bottom: -1.4em ! important;
+}
+
+.select-buyers-container .title {
+  color: inherit ! important;
+  font-size: 1.875em ! important;
+  font-weight: 600 ! important;
+  margin: 0 ! important;
+  max-width: 100% ! important;
+  padding: 0.1em 1em 0.4em ! important;
+  position: relative ! important;
+  text-align: center ! important;
+  text-transform: none ! important;
+  word-wrap: break-word ! important;
+}
+
+.select-buyers-container .select-buyers-done-button {
+  background-color: transparent ! important;
+  color: #38c593 ! important;
+}
+
+.select-buyers-container .MuiFormControl-root {
+  width: 100%;
+}
+
+.select-buyers-menu {
+  max-width: 400px ! important;
+  right: 0 ! important;
+}
+
+.select-buyers-menu ul {
+  margin-block-end: 0 ! important;
+  margin-block-start: 0 ! important;
+  margin-inline-end: 0 ! important;
+  margin-inline-start: 0 ! important;
+  max-height: 205px;
+  overflow-y: auto;
+  padding-inline-start: 0 ! important;
+}
+
+.select-buyers-menu-li {
+  margin: 0 ! important;
+  padding: 0 ! important;
+}
+
+.select-buyers-menu .MuiButtonBase-root.MuiCheckbox-root.Mui-checked {
+  color: #38c593 ! important;
+}
+
+.select-buyers fieldset {
+  border-color: #38c593 ! important;
+}
+
+.select-buyers .MuiSelect-select {
+  padding: 30px 14px 16.5px;
+}

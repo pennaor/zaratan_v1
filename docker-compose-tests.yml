@@ -1,0 +1,41 @@
+version: '3.9'
+
+services:
+  zaratan_tests:
+    platform: linux/x86_64
+    build:
+      context: .
+      dockerfile: ./__tests__/Dockerfile
+    container_name: zaratan_tests
+    environment:
+      - TESTS_ENV=docker
+
+      - HEADLESS=true
+      - SLOW_MOTION=10
+      - DEVTOOLS=false
+      - CORE_TESTS_ONLY_CONFIG_STEP=false
+      - CORE_TESTS_ONLY_TERRAIN_DETAILS_STEP=false
+      - CORE_TESTS_ONLY_SALE_DETAILS_STEP=false
+      - CORE_TESTS_ONLY_INSTALLMENTS_STEP=false
+      - CORE_TESTS_ONLY_BUYERS_STEP=false
+
+      - REACT_APP_HOST=localhost
+      - REACT_APP_PORT=3000
+
+      - API_HOST=localhost
+      - API_PORT=3001
+      - RESET_FILE_DB_ABSOLUTE_PATH=/__tests__/sql/dev-db.sql
+
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=123456789
+      - MYSQL_DATABASE=zaratan_dev
+      - MYSQL_HOST=localhost
+      - MYSQL_PORT=3306
+    volumes:
+      - ./__tests__/src:/__tests__/src
+      - ./sql:/__tests__/sql
+    network_mode: "host"
+
+    # Nome dos testes a serem rodados.
+    # Caso omitido, todos os testes serão rodados.
+    command: ""

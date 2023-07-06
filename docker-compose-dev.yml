@@ -1,0 +1,92 @@
+version: '3.9'
+
+services:
+  dev-front-end:
+    platform: linux/x86_64
+    build: 
+      context: ./front-end
+      dockerfile: dev.Dockerfile
+    working_dir: /front-end
+    container_name: zaratan_dev-front-end
+    ports:
+      - 3000:3000
+    environment:
+      - REACT_APP_API_PROTOCOL=${REACT_APP_API_PROTOCOL}
+      - REACT_APP_API_HOST=${REACT_APP_API_HOST}
+      - REACT_APP_API_PORT=${REACT_APP_API_PORT}
+      - BROWSER=none
+      - WATCHPACK_POLLING=true
+      - ESLINT_NO_DEV_ERRORS=true
+      - SKIP_PREFLIGHT_CHECK=true
+    volumes:
+      - ./front-end/src:/front-end/src
+    restart: on-failure
+    healthcheck:
+      test: ["CMD", "lsof", "-t", "-i:3000"]
+      timeout: 20s
+      retries: 5
+    networks:
+      - network-1
+  dev-back-end:
+    platform: linux/x86_64
+    build:
+      context: ./back-end
+      dockerfile: dev.Dockerfile
+    working_dir: /back-end
+    container_name: zaratan_dev-back-end
+    ports:
+      - 3001:3001
+    environment:
+      - API_HOST=${API_HOST}
+      - API_PORT=${API_PORT}
+      - API_ENV=${API_ENV}
+      - CORS_ORIGIN=${CORS_ORIGIN}
+      - JWT_SECRET_KEY=${JWT_SECRET_KEY}
+      - MYSQL_HOST=${MYSQL_HOST}
+      - MYSQL_PORT=${MYSQL_PORT}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+    volumes:
+      - ./back-end/src:/back-end/src
+    restart: on-failure
+    depends_on:
+      dev-db:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "lsof", "-t", "-i:3001"]
+      timeout: 20s
+      retries: 5
+    networks:
+      - network-1
+      - network-2
+  dev-db:
+    platform: linux/x86_64
+    image: mysql:8.0.21
+    container_name: zaratan_dev-db
+    ports:
+      - 3306:3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_PASSWORD}
+    volumes:
+      - dev-db-data:/var/lib/mysql
+      - type: bind
+        source: ./sql/dev-db.sql
+        target: /dev-db.sql
+    command: --init-file /dev-db.sql
+    restart: always
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 5
+    networks:
+      - network-2
+    cap_add:
+      - SYS_NICE
+
+volumes:
+  dev-db-data:
+
+networks:
+  network-1:
+  network-2:

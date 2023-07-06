@@ -1,0 +1,34 @@
+.edit-buyer-form .actions {
+  align-items: center;
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 1.25em auto 0;
+  padding: 0;
+  width: auto;
+  z-index: 1;
+}
+
+.edit-buyer-form .btn {
+  background: initial ! important;
+  background-color: rgb(56, 197, 147) ! important;
+  border: 0 ! important;
+  border-radius: 0.25em ! important;
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0) ! important;
+  color: white ! important;
+  display: inline-block;
+  font-size: 0.8em ! important;
+  font-weight: 500 ! important;
+  margin: 0.313em ! important;
+  padding: 0.625em 1.1em ! important;
+  transition: box-shadow 0.1s ! important;
+}
+
+.edit-buyer-form .cancel {
+  background-color: rgb(135 149 144) ! important;
+}
+
+.edit-buyer-form .btn:not( [ disabled ] ) {
+  cursor: pointer ! important;
+}

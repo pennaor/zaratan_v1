@@ -1,0 +1,12 @@
+.installment-container {
+  padding: 16px ! important;
+}
+
+.installment-container.deferred-installment {
+  padding: 16px 16px 0 ! important;
+}
+
+.installment-container.accumulated-installment {
+  border: 2px dotted #0288d1 ! important;
+  padding: 14px 14px 0 ! important;
+}
