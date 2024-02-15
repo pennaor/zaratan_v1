@@ -1,0 +1,20 @@
+.terrain-overview-section.MuiAccordion-root.Mui-expanded {
+  margin: 0 ! important;
+}
+
+.terrain-overview-section.MuiAccordion-root.Mui-expanded:before {
+  opacity: 1 ! important;
+}
+
+.terrain-overview-section .MuiButtonBase-root.MuiAccordionSummary-root.Mui-expanded {
+  cursor: default ! important;
+  min-height: 48px ! important;
+}
+
+.terrain-overview-section .MuiAccordionSummary-content.Mui-expanded {
+  margin: 0 ! important;
+}
+
+.terrain-overview-section {
+  box-shadow: none ! important;
+}

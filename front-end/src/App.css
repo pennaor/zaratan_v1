@@ -1,0 +1,27 @@
+body {
+  background-color: #d7d7d7 ! important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro , Menlo , Monaco , Consolas , Courier New , monospace;
+}
+
+.MuiInputBase-root:not( .Mui-disabled ) {
+  background-color: transparent ! important;
+}
+
+.add-or-edit-inst-focus {
+  border: 1px solid #38c593 ! important;
+  margin-bottom: 2px;
+  margin-top: 2px;
+  padding: 14px ! important;
+}
+
+.freeze-body {
+  left: 0;
+  position: fixed;
+  right: 0;
+  scroll-behavior: smooth;
+}

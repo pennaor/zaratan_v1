@@ -1,0 +1,28 @@
+.swal2-container {
+  z-index: 1300 ! important;
+}
+
+.swal2-container.on-timeout-close {
+  display: none;
+}
+
+.swal2-html-container .MuiInputBase-root.MuiFilledInput-root:after {
+  border-color: #38c593 ! important;
+}
+
+.swal2-html-container .MuiInputBase-root.MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+  border-color: #38c593 ! important;
+}
+
+.swal2-html-container .MuiFormLabel-root.MuiInputLabel-root.Mui-focused {
+  color: #38c593 ! important;
+}
+
+.swal2-html-container .MuiButtonBase-root {
+  background-color: #38c593 ! important;
+  color: white ! important;
+}
+
+.swal2-html-container .MuiInputBase-root:not( .Mui-disabled ) {
+  background-color: transparent ! important;
+}

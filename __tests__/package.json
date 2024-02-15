@@ -1,0 +1,20 @@
+{
+  "name": "zaratan_tests",
+  "version": "1.0",
+  "module": "node",
+  "dependencies": {
+    "@swc/core": "^1.2.165",
+    "@swc/jest": "^0.2.20",
+    "@types/jest": "^27.5.2",
+    "@types/jest-environment-puppeteer": "^5.0.3",
+    "@types/node": "^16.18.10",
+    "@types/puppeteer": "^7.0.4",
+    "dotenv": "^16.0.3",
+    "jest": "^27.5.1",
+    "mysql2": "^3.4.0",
+    "puppeteer": "latest"
+  },
+  "scripts": {
+    "test": "jest --runInBand"
+  }
+}

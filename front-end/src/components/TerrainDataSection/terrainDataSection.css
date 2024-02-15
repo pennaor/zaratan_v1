@@ -1,0 +1,23 @@
+.terrain-data-section.MuiAccordion-root.Mui-expanded {
+  margin: 0 ! important;
+}
+
+.terrain-data-section.MuiAccordion-root.Mui-expanded:before {
+  opacity: 1 ! important;
+}
+
+.terrain-data-section .MuiButtonBase-root.MuiAccordionSummary-root.Mui-expanded {
+  min-height: 48px ! important;
+}
+
+.terrain-data-section .MuiAccordionSummary-content.Mui-expanded {
+  margin: 0 ! important;
+}
+
+.terrain-actions .MuiAccordionSummary-root {
+  background-color: #424242 ! important;
+}
+
+.terrain-data-section .MuiAccordionSummary-root {
+  background-color: #38c593;
+}

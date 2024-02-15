@@ -1,0 +1,82 @@
+version: '3.9'
+
+services:
+  front-end:
+    platform: linux/x86_64
+    build:
+      context: ./front-end
+      dockerfile: Dockerfile
+      args:
+        - REACT_APP_API_PROTOCOL=${REACT_APP_API_PROTOCOL}
+        - REACT_APP_API_HOST=${REACT_APP_API_HOST}
+        - REACT_APP_API_PORT=${REACT_APP_API_PORT}
+    container_name: zaratan_front-end
+    ports:
+      - 3000:80
+    healthcheck:
+      test: ["CMD", "lsof", "-t", "-i:80"]
+      timeout: 20s
+      retries: 5
+    networks:
+      - network-1
+  back-end:
+    platform: linux/x86_64
+    build:
+      context: ./back-end
+      dockerfile: Dockerfile
+    container_name: zaratan_back-end
+    working_dir: /back-end
+    ports:
+      - 3001:3001
+    environment:
+      - API_HOST=${API_HOST}
+      - API_PORT=${API_PORT}
+      - API_ENV=${API_ENV}
+      - CORS_ORIGIN=${CORS_ORIGIN}
+      - JWT_SECRET_KEY=${JWT_SECRET_KEY}
+      - MYSQL_HOST=${MYSQL_HOST}
+      - MYSQL_PORT=${MYSQL_PORT}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: on-failure
+    healthcheck:
+      test: ["CMD", "lsof", "-t", "-i:3001"]
+      timeout: 20s
+      retries: 5
+    networks:
+      - network-1
+      - network-2
+  db:
+    platform: linux/x86_64
+    image: mysql:8.0.21
+    container_name: zaratan_db
+    ports:
+      - 3306:3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_PASSWORD}
+    volumes:
+      - db-data:/var/lib/mysql
+      - type: bind
+        source: ./sql/prod-db.sql
+        target: /prod-db.sql
+    command: --init-file /prod-db.sql
+    restart: 'on-failure'
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 5
+    networks:
+      - network-2    
+    cap_add:
+      - SYS_NICE
+
+volumes:
+  db-data:
+
+networks:
+  network-1:
+  network-2:
